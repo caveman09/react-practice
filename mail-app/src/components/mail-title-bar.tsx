@@ -1,8 +1,29 @@
 import React from "react";
 import { Button } from "./ui/button";
-import custom_menu_box_image from '../assets/images/menu-box.png'
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Input } from "@/components/ui/input";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog"
+import {
+    Sheet,
+    SheetContent,
+    SheetDescription,
+    SheetHeader,
+    SheetTitle,
+    SheetTrigger,
+} from "@/components/ui/sheet"
+
+import custom_menu_box_image from '../assets/images/menu-box.png'
+import custom_avatar_image from '../assets/images/avatar.png.jpg'
+import custom_settings_image from '../assets/images/settings-icon.png'
+import custom_notifications_image from '../assets/images/notif-icon.png'
 
 export default function MailTitlebar() {
 
@@ -32,8 +53,41 @@ export default function MailTitlebar() {
                     <Input type="search" placeholder="Search" />
                 </div>
             </div >
-            <div className="bg-red-400 flex">
-                Right Section
+            <div className="flex px-2 space-x-0 justify-end">
+                <div className="flex my-2.5  aspect-square">
+                    <Sheet>
+                        <SheetTrigger>
+                            <img src={custom_notifications_image} />
+                        </SheetTrigger>
+                        <SheetContent>
+                            <SheetHeader>
+                                <SheetTitle>Notifications</SheetTitle>
+                                <SheetDescription>
+                                    Nothing for now ! All your notifications will show up here!
+                                </SheetDescription>
+                            </SheetHeader>
+                        </SheetContent>
+                    </Sheet>
+                </div>
+                <div className="flex my-2.5 aspect-square px-2">
+                    <Dialog>
+                        <DialogTrigger className="flex aspect-square">
+                            <img src={custom_settings_image}></img>
+                        </DialogTrigger>
+                        <DialogContent>
+                            <DialogHeader>
+                                <DialogTitle>Settings</DialogTitle>
+                                <DialogDescription>
+                                    Adjust settings here.
+                                </DialogDescription>
+                            </DialogHeader>
+                        </DialogContent>
+                    </Dialog>
+                </div>
+                <Avatar className="flex my-auto">
+                    <AvatarImage src={custom_avatar_image} />
+                    <AvatarFallback>CN</AvatarFallback>
+                </Avatar>
             </div>
         </div >)
 }
