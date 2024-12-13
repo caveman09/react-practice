@@ -28,13 +28,15 @@ import custom_notifications_image from '../assets/images/notif-icon.png'
 export default function MailTitlebar() {
 
     return (
-        <div className='flex justify-between h-[50px]'>
+        <div className='flex justify-between h-[50px] sticky top-0 bg-white'>
             < div className="flex flex-grow" >
+                {/* Menu Popover */}
                 < div className="my-auto h-full flex" >
                     <Popover>
-                        <PopoverTrigger className="flex">
-                            <img src={custom_menu_box_image} className="w-[50px] h-full" alt="Image" />
+                        <PopoverTrigger className="flex aspect-square">
+                            <img src={custom_menu_box_image} className="m-auto w-[35px] h-[35px] aspect-square" alt="Image" />
                         </PopoverTrigger>
+                        <div className="m-auto bg-orange-300 px-[10px]">Cave Mail</div>
                         <PopoverContent>
                             <div className="flex">
                                 <p className="text-sm text-muted-foreground mx-auto">
@@ -49,12 +51,15 @@ export default function MailTitlebar() {
                         </PopoverContent>
                     </Popover>
                 </div >
-                <div className="flex w-[500px]  my-auto mx-10">
+                {/* Searchbar Text Input */}
+                <div className="flex w-[100px]  md:w-[500px] sm:w-[300px]  my-auto mx-10">
                     <Input type="search" placeholder="Search" />
                 </div>
             </div >
-            <div className="flex px-2 space-x-0 justify-end">
-                <div className="flex my-2.5  aspect-square">
+
+            <div className="flex flex-grow px-2 space-x-0 justify-end">
+                {/* Notifications Button */}
+                <div className="flex my-3  aspect-square">
                     <Sheet>
                         <SheetTrigger>
                             <img src={custom_notifications_image} />
@@ -69,7 +74,8 @@ export default function MailTitlebar() {
                         </SheetContent>
                     </Sheet>
                 </div>
-                <div className="flex my-2.5 aspect-square px-2">
+                {/* Settings Button */}
+                <div className="flex my-3 aspect-square px-2">
                     <Dialog>
                         <DialogTrigger className="flex aspect-square">
                             <img src={custom_settings_image}></img>
@@ -84,6 +90,7 @@ export default function MailTitlebar() {
                         </DialogContent>
                     </Dialog>
                 </div>
+                {/* Avatar */}
                 <Avatar className="flex my-auto">
                     <AvatarImage src={custom_avatar_image} />
                     <AvatarFallback>CN</AvatarFallback>
