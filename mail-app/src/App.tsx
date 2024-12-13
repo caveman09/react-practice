@@ -14,18 +14,24 @@ import MailTitlebar from './components/mail-title-bar'
 import SideMenu from './components/side-menu'
 import { SidebarProvider, SidebarTrigger } from './components/ui/sidebar'
 
-function App() {
+import burger_menu_image from './assets/images/burgermenu.png'
+import MailsComponent from './pages/mails'
 
+function App() {
   return (
     <React.Fragment>
       <MailTitlebar></MailTitlebar>
-      <SidebarProvider style={{ "--sidebar-width": "3rem" }}>
-        <div className='flex bg-orange-100 flex-1'>
-          <SideMenu />
-          <div className='flex-grow'>
+      <div className='flex'>
+        <SidebarProvider style={{ "--sidebar-width": "0rem" }}>
+          <SideMenu style={{ width: "3rem" }} />
+
+          <div className='flex-grow' style={{ marginLeft: "3rem" }}>
             <div className='sticky top-[50px]'>
-              <Menubar>
+              <Menubar className='p-0'>
                 <MenubarMenu>
+                  <Button variant={'ghost'} className=''>
+                    <img src={burger_menu_image} className='w-full h-full' />
+                  </Button>
                   <MenubarTrigger>File</MenubarTrigger>
                   <MenubarContent>
                     <MenubarItem>
@@ -41,9 +47,12 @@ function App() {
                 </MenubarMenu>
               </Menubar>
             </div>
+            <div className='flex'>
+              <MailsComponent />
+            </div>
           </div>
-        </div>
-      </SidebarProvider>
+        </SidebarProvider>
+      </div>
     </React.Fragment >
   )
 }

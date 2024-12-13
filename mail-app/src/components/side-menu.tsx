@@ -47,7 +47,7 @@ const items = [
 
 export default function SideMenu() {
     return (
-        <Sidebar className="mt-[50px]">
+        <Sidebar style={{ width: "3em" }} className="mt-[50px] bg-orange-50">
             <SidebarContent className="">
                 <SidebarGroup className="p-0">
                     <SidebarGroupLabel className="w-11 h-11 bg-orange-50 m-[2.5px] p-0.5">
