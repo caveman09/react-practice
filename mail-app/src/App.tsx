@@ -19,15 +19,15 @@ import MailsComponent from './pages/mails'
 
 function App() {
   return (
-    <React.Fragment>
+    <div className='bg-orange-200'>
       <MailTitlebar></MailTitlebar>
-      <div className='flex'>
-        <SidebarProvider style={{ "--sidebar-width": "0rem" }}>
+      <div className='flex mt-[0px]'>
+        <SidebarProvider style={{ "--sidebar-width": "0rem" }} className='bg-orange-50 flex-1'>
           <SideMenu style={{ width: "3rem" }} />
 
           <div className='flex-grow' style={{ marginLeft: "3rem" }}>
             <div className='sticky top-[50px]'>
-              <Menubar className='p-0'>
+              <Menubar className='p-0 overflow-hidden'>
                 <MenubarMenu>
                   <Button variant={'ghost'} className=''>
                     <img src={burger_menu_image} className='w-full h-full' />
@@ -47,13 +47,14 @@ function App() {
                 </MenubarMenu>
               </Menubar>
             </div>
-            <div className='flex'>
+
+            <div className='mt-[50px]'>
               <MailsComponent />
             </div>
           </div>
         </SidebarProvider>
       </div>
-    </React.Fragment >
+    </div>
   )
 }
 
