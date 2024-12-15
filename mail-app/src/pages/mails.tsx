@@ -25,7 +25,7 @@ export default function MailsComponent() {
         <div id="mails-parent" className="flex overflow-hidden">
             <SidebarProvider style={{ "--sidebar-width": "12rem" }} className="max-h-full flex-1">
                 <MailViewSidebarComponent />
-                <ResizablePanelGroup direction="horizontal" className="flex-1 overflow-hidden max-h-[41rem]">
+                <ResizablePanelGroup direction="horizontal" className="flex-1 overflow-hidden max-h-[150rem]">
                     <ResizablePanel className="max-h-full">
                         <MailsListComponent />
                     </ResizablePanel>
