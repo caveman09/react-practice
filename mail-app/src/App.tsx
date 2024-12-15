@@ -27,7 +27,7 @@ function App() {
 
           <div className='flex-grow' style={{ marginLeft: "3rem" }}>
             <div className='sticky top-[50px]'>
-              <Menubar className='p-0 overflow-hidden'>
+              <Menubar className='p-0 overflow-hidden z-40'>
                 <MenubarMenu>
                   <Button variant={'ghost'} className=''>
                     <img src={burger_menu_image} className='w-full h-full' />
@@ -48,7 +48,7 @@ function App() {
               </Menubar>
             </div>
 
-            <div className='mt-[50px]'>
+            <div className='mt-[50px] z-10'>
               <MailsComponent />
             </div>
           </div>
