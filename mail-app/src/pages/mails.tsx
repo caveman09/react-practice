@@ -13,6 +13,11 @@ export default function MailsComponent() {
             if (div) {
                 div.style.height = `${window.innerHeight - 90}px`;
             }
+
+            const scroll = document.getElementById('mail-scroll');
+            if (scroll) {
+                scroll.style.height = `${window.innerHeight - 90}px`;
+            }
         }
         updateDivHeight();
         window.addEventListener('resize', updateDivHeight);
@@ -25,12 +30,12 @@ export default function MailsComponent() {
         <div id="mails-parent" className="flex overflow-hidden">
             <SidebarProvider style={{ "--sidebar-width": "12rem" }} className="max-h-full flex-1">
                 <MailViewSidebarComponent />
-                <ResizablePanelGroup direction="horizontal" className="flex-1 overflow-hidden max-h-[150rem]">
-                    <ResizablePanel className="max-h-full">
+                <ResizablePanelGroup direction="horizontal" className="flex-1 overflow-hidden max-h-full h-full">
+                    <ResizablePanel className="max-h-full h-full">
                         <MailsListComponent />
                     </ResizablePanel>
                     <ResizableHandle withHandle className="h-full" />
-                    <ResizablePanel className="max-h-full">
+                    <ResizablePanel className="max-h-full h-full">
                         <MailsViewComponent />
                     </ResizablePanel>
                 </ResizablePanelGroup>

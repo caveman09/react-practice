@@ -1,12 +1,12 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import EmailCard from "./mail-item";
 import { dummyEmails, Email } from "@/types/emailTypes";
 
 export default function MailsListComponent() {
     return (
-        <div className="flex-grow h-[150rem]">
-            <ScrollArea className="rounded-md border h-full z-10">
+        <div className="flex-grow h-[41rem] bg-orange-300">
+            <ScrollArea id='mail-scroll' className="flex-grow rounded-md border max-h-full h-full z-10">
                 < div className="p-4" >
                     {
                         dummyEmails.map((mailItem, index) => (
