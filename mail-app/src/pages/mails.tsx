@@ -14,6 +14,11 @@ export default function MailsComponent() {
                 div.style.height = `${window.innerHeight - 90}px`;
             }
 
+            const maildiv = document.getElementById('mail-div');
+            if (maildiv) {
+                maildiv.style.height = `${window.innerHeight - 90}px`;
+            }
+
             const scroll = document.getElementById('mail-scroll');
             if (scroll) {
                 scroll.style.height = `${window.innerHeight - 90}px`;

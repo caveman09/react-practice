@@ -5,7 +5,7 @@ import { dummyEmails, Email } from "@/types/emailTypes";
 
 export default function MailsListComponent() {
     return (
-        <div className="flex-grow h-[41rem] bg-orange-300">
+        <div id='mail-div' className="flex-grow h-[41rem]">
             <ScrollArea id='mail-scroll' className="flex-grow rounded-md border max-h-full h-full z-10">
                 < div className="p-4" >
                     {
