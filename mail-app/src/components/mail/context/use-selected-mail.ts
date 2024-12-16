@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { SelectedEmailContext } from "./selected-email-context";
+import { SelectedEmailContext, SelectedEmailUpdaterContext } from "./selected-email-context";
 
 const useSelectedEmail = () => {
     const context = useContext(SelectedEmailContext);
@@ -10,9 +10,9 @@ const useSelectedEmail = () => {
 }
 
 const useSetSelectedEmail = () => {
-    const context = useContext(SelectedEmailContext);
+    const context = useContext(SelectedEmailUpdaterContext);
     if (!context) {
-        throw new Error('useSelectedEmail hook should be used within bounds of SelectedEmailProvider');
+        throw new Error('useSelectedEmail hook should be used within bounds of SelectedEmailUpdaterProvider');
     }
     return context.setSelectedEmail;
 }

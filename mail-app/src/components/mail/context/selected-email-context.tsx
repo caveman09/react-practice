@@ -1,20 +1,15 @@
-import { createContext, ReactNode, useState } from "react";
+import { Children, createContext, ReactNode, useState } from "react";
 import { Email } from "@/types/emailTypes";
 
-interface EmailContextType {
+interface SelectedEmailContextType {
     selectedEmail: Email | null;
+};
+interface SelectedEmailUpdaterContextType {
     setSelectedEmail: (email: Email | null) => void;
-};
+}
 
-const SelectedEmailContext = createContext<EmailContextType | undefined>(undefined);
-const SelectedEmailProvider = ({ children }: { children: ReactNode }) => {
-    const [selectedEmail, setSelectedEmail] = useState<Email | null>(null);
-    return (
-        <SelectedEmailContext.Provider value={{ selectedEmail, setSelectedEmail }}>
-            {children}
-        </SelectedEmailContext.Provider>
-    );
-};
+const SelectedEmailContext = createContext<SelectedEmailContextType | undefined>(undefined);
+const SelectedEmailUpdaterContext = createContext<SelectedEmailUpdaterContextType | undefined>(undefined);
 
-export { SelectedEmailContext, SelectedEmailProvider };
-export type { EmailContextType };
+export { SelectedEmailContext, SelectedEmailUpdaterContext };
+export type { SelectedEmailContextType, SelectedEmailUpdaterContextType };
