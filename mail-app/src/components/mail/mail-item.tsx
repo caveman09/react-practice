@@ -8,10 +8,11 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import { useSetSelectedEmail } from "./context/use-selected-mail";
+import { selectedEmailState } from "./atoms/mail-atoms";
+import { useSetRecoilState } from "recoil";
 
 const EmailCard = (mail: Email) => {
-    const setSelectedEmail = useSetSelectedEmail();
+    const setSelectedEmail = useSetRecoilState(selectedEmailState);
 
     const cardClicked = (ev: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         setSelectedEmail(mail);

@@ -1,8 +1,8 @@
-import React from "react";
-import { useSelectedEmail } from "./context/use-selected-mail";
+import { selectedEmailState } from "./atoms/mail-atoms";
+import { useRecoilValue } from "recoil";
 
 export default function MailsViewComponent() {
-    const { selectedEmail } = useSelectedEmail();
+    const selectedEmail = useRecoilValue(selectedEmailState);
 
     function defaultView() {
         return (<div className="h-full flex">
