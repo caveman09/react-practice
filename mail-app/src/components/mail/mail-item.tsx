@@ -1,4 +1,5 @@
 import { Email } from "@/types/emailTypes";
+import React from "react";
 import {
     Card,
     CardContent,
@@ -7,10 +8,17 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
+import { useSetSelectedEmail } from "./context/use-selected-mail";
 
-export default function EmailCard(mail: Email) {
+const EmailCard = (mail: Email) => {
+    const setSelectedEmail = useSetSelectedEmail();
+
+    const cardClicked = (ev: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        setSelectedEmail(mail);
+    };
+
     return (
-        <Card>
+        <Card className="mt-4 h-20 transition-transform duration-100 hover:scale-105 hover:bg-orange-50" onClick={cardClicked}>
             <CardHeader>
                 <CardTitle>{mail.sender}</CardTitle>
                 <CardDescription>{mail.subject}</CardDescription>
@@ -24,3 +32,5 @@ export default function EmailCard(mail: Email) {
         </Card>
     )
 }
+
+export default React.memo(EmailCard);

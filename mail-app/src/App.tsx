@@ -19,10 +19,10 @@ import MailsComponent from './pages/mails'
 
 function App() {
   return (
-    <div className='bg-orange-200'>
+    <div className=''>
       <MailTitlebar></MailTitlebar>
       <div className='flex mt-[0px]'>
-        <SidebarProvider style={{ "--sidebar-width": "0rem" }} className='bg-orange-50 flex-1'>
+        <SidebarProvider style={{ "--sidebar-width": "0rem" }} className='flex-1'>
           <SideMenu style={{ width: "3rem" }} />
 
           <div className='flex-grow' style={{ marginLeft: "3rem" }}>

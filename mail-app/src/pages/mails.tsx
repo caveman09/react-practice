@@ -1,12 +1,13 @@
-import MailsListComponent from "@/components/mail/mail-list";
-import MailViewSidebarComponent from "@/components/mail/mail-sidebar";
-import MailsViewComponent from "@/components/mail/mail-view";
 import { Separator } from "@/components/ui/separator";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState, createContext, useContext } from 'react';
+import MailViewSidebarComponent from "@/components/mail/mail-sidebar";
+import MailsViewComponent from "@/components/mail/mail-view";
+import MailsListComponent from "@/components/mail/mail-list";
+import { SelectedEmailProvider } from "@/components/mail/context/selected-email-context";
 
-export default function MailsComponent() {
+const MailsComponent = () => {
     useEffect(() => {
         const updateDivHeight = () => {
             const div = document.getElementById('mails-parent');
@@ -35,16 +36,23 @@ export default function MailsComponent() {
         <div id="mails-parent" className="flex overflow-hidden">
             <SidebarProvider style={{ "--sidebar-width": "12rem" }} className="max-h-full flex-1">
                 <MailViewSidebarComponent />
-                <ResizablePanelGroup direction="horizontal" className="flex-1 overflow-hidden max-h-full h-full">
-                    <ResizablePanel className="max-h-full h-full">
-                        <MailsListComponent />
-                    </ResizablePanel>
-                    <ResizableHandle withHandle className="h-full" />
-                    <ResizablePanel className="max-h-full h-full">
-                        <MailsViewComponent />
-                    </ResizablePanel>
-                </ResizablePanelGroup>
+                <SelectedEmailProvider>
+                    <ResizablePanelGroup direction="horizontal" className="flex-1 max-h-full h-full">
+                        <ResizablePanel className="max-h-full h-full">
+                            <div>
+                                <div>TopBar</div>
+                                <MailsListComponent />
+                            </div>
+                        </ResizablePanel>
+                        <ResizableHandle withHandle className="h-full" />
+                        <ResizablePanel className="max-h-full h-full">
+                            <MailsViewComponent />
+                        </ResizablePanel>
+                    </ResizablePanelGroup>
+                </SelectedEmailProvider>
             </SidebarProvider>
         </div >
     )
 }
+
+export default React.memo(MailsComponent);
