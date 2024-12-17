@@ -1,9 +1,69 @@
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
-import React, { useEffect } from 'react';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import React, { ReactNode, useEffect } from 'react';
 import MailViewSidebarComponent from "@/components/mail/mail-sidebar";
 import MailsViewComponent from "@/components/mail/mail-view";
 import MailsListComponent from "@/components/mail/mail-list";
+import { dummyEmails } from "@/types/emailTypes";
+import { Inbox } from "lucide-react";
+import { Card } from "@/components/ui/card";
+
+const MailListTopBarComponent: React.FunctionComponent<{ title: string, children: ReactNode | undefined }> = ({ title, children }) => {
+    return (
+        <Card className="rounded-sm mt-1 mx-1 h-[50px]">
+            <div className="">
+                {children ? children : <div className="pt-2.5 pl-10 text-start text-xl font-semibold">{title}</div>}
+            </div>
+        </Card>
+    )
+}
+
+const InboxMailsList = () => {
+    const InboxTab: React.FC<{}> = () => {
+        return <Tabs defaultValue="Focused" className="w-full h-full p-0">
+            <TabsList className="h-full w-full justify-start pl-10 rounded-sm m-0 py-2.5">
+                <TabsTrigger value="Focused" className="rounded-sm">Focused</TabsTrigger>
+                <TabsTrigger value="Other" className="rounded-sm">Other</TabsTrigger>
+            </TabsList>
+        </Tabs>;
+    }
+    return (
+        <div>
+            <MailListTopBarComponent title={'Inbox'}>
+                <InboxTab />
+            </MailListTopBarComponent>
+            <MailsListComponent dummyEmails={dummyEmails} />
+        </div>
+    )
+}
+
+const JunkMailsList = () => {
+    return (
+        <div>
+            <MailListTopBarComponent title={'Junk'} children={undefined} />
+            <MailsListComponent dummyEmails={dummyEmails} />
+        </div>
+    )
+}
+
+const DraftMailsList = () => {
+    return (
+        <div>
+            <MailListTopBarComponent title={'Draft'} children={undefined} />
+            <MailsListComponent dummyEmails={dummyEmails} />
+        </div>
+    )
+}
+
+const DeletedMailsList = () => {
+    return (
+        <div>
+            <MailListTopBarComponent title={'Deleted'} children={undefined} />
+            <MailsListComponent dummyEmails={dummyEmails} />
+        </div>
+    )
+}
 
 const MailsComponent = () => {
 
@@ -40,10 +100,7 @@ const MailsComponent = () => {
                 <MailViewSidebarComponent />
                 <ResizablePanelGroup direction="horizontal" className="flex-1 max-h-full h-full">
                     <ResizablePanel className="max-h-full h-full">
-                        <div>
-                            <div>TopBar</div>
-                            <MailsListComponent />
-                        </div>
+                        <InboxMailsList />
                     </ResizablePanel>
                     <ResizableHandle withHandle className="h-full" />
                     <ResizablePanel className="max-h-full h-full">

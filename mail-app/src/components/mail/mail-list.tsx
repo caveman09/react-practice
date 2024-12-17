@@ -1,9 +1,13 @@
 import React, { useEffect } from "react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import EmailCard from "./mail-item";
-import { dummyEmails, Email } from "@/types/emailTypes";
+import { Email } from "@/types/emailTypes";
 
-const MailsListComponent = () => {
+interface MailsListProps {
+    dummyEmails: Email[];
+}
+
+const MailsListComponent: React.FC<MailsListProps> = ({ dummyEmails }) => {
     return (
         <div id='mail-div' className="flex-grow h-[41rem]">
             <ScrollArea id='mail-scroll' className="flex-grow rounded-sm border max-h-full h-full z-10 mx-1">
