@@ -2,11 +2,11 @@ import { SidebarProvider } from "@/components/ui/sidebar";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import React, { ReactNode, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MailViewSidebarComponent from "@/components/mail/mail-sidebar";
 import MailsViewComponent from "@/components/mail/mail-view";
 import MailsListComponent from "@/components/mail/mail-list";
 import { dummyEmails } from "@/types/emailTypes";
-import { Inbox } from "lucide-react";
 import { Card } from "@/components/ui/card";
 
 const MailListTopBarComponent: React.FunctionComponent<{ title: string, children: ReactNode | undefined }> = ({ title, children }) => {
@@ -95,20 +95,29 @@ const MailsComponent = () => {
     }, [])
 
     return (
-        <div id="mails-parent" className="flex overflow-hidden">
-            <SidebarProvider style={{ "--sidebar-width": "12rem" }} className="max-h-full flex-1">
-                <MailViewSidebarComponent />
-                <ResizablePanelGroup direction="horizontal" className="flex-1 max-h-full h-full">
-                    <ResizablePanel className="max-h-full h-full">
-                        <InboxMailsList />
-                    </ResizablePanel>
-                    <ResizableHandle withHandle className="h-full" />
-                    <ResizablePanel className="max-h-full h-full">
-                        <MailsViewComponent />
-                    </ResizablePanel>
-                </ResizablePanelGroup>
-            </SidebarProvider>
-        </div >
+        <Router>
+            <div id="mails-parent" className="flex overflow-hidden">
+                <SidebarProvider style={{ "--sidebar-width": "12rem" }} className="max-h-full flex-1">
+                    <MailViewSidebarComponent />
+                    <ResizablePanelGroup direction="horizontal" className="flex-1 max-h-full h-full">
+                        <ResizablePanel className="max-h-full h-full">
+                            <Routes>
+                                <Route path="/" element={<InboxMailsList />} />
+                                <Route path="/junkemail" element={<JunkMailsList />} />
+                                <Route path="/drafts" element={<DraftMailsList />} />
+                                <Route path="/sentitems" element={<></>} />
+                                <Route path="/deleteditems" element={<DeletedMailsList />} />
+                            </Routes>
+                        </ResizablePanel>
+                        <ResizableHandle withHandle className="h-full" />
+                        <ResizablePanel className="max-h-full h-full">
+                            <MailsViewComponent />
+                        </ResizablePanel>
+                    </ResizablePanelGroup>
+                </SidebarProvider>
+            </div>
+
+        </Router>
     )
 }
 

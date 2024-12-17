@@ -1,4 +1,4 @@
-import React from "react";
+import { Link } from "react-router-dom";
 import {
     Sidebar,
     SidebarContent,
@@ -17,37 +17,37 @@ import { Archive, ArrowUpRightSquare, Icon, Inbox, LucideAlertOctagon, NotepadTe
 const folders = [
     {
         name: 'Inbox',
-        url: '#',
+        url: '/',
         icon: Inbox
     },
     {
         name: 'Junk Email',
-        url: '#',
+        url: '/junkemail',
         icon: LucideAlertOctagon
     },
     {
         name: 'Drafts',
-        url: '#',
+        url: '/drafts',
         icon: Pen
     },
     {
         name: 'Sent Items',
-        url: '#',
+        url: '/sentitems',
         icon: ArrowUpRightSquare
     },
     {
         name: 'Deleted Items',
-        url: '#',
+        url: '/deleteditems',
         icon: Trash2
     },
     {
         name: 'Archive',
-        url: '#',
+        url: '/archive',
         icon: Archive
     },
     {
         name: 'Notes',
-        url: '#',
+        url: '/notes',
         icon: NotepadText
     }
 ]
@@ -61,12 +61,14 @@ export default function MailViewSidebarComponent() {
                     <SidebarGroupContent>
                         <SidebarMenu>
                             {folders.map((folder) => (
-                                <SidebarMenuItem key={folder.name} className="pl-3">
+                                <SidebarMenuItem key={folder.name} className="pl-2">
                                     <SidebarMenuButton asChild>
-                                        <a href={folder.url}>
-                                            <folder.icon />
-                                            <span>{folder.name}</span>
-                                        </a>
+                                        <li className="">
+                                            <Link to={folder.url} className="flex space-x-2 justify-start">
+                                                <folder.icon className="p-1" />
+                                                <span>{folder.name}</span>
+                                            </Link>
+                                        </li>
                                     </SidebarMenuButton>
                                 </SidebarMenuItem>
                             ))}
