@@ -19,7 +19,7 @@ const EmailCard = (mail: Email) => {
     };
 
     return (
-        <Card className="mt-4 h-20 transition-transform duration-100 hover:scale-105 hover:bg-orange-50" onClick={cardClicked}>
+        <Card className="mt-4 h-20 transition-transform duration-100 hover:scale-105 hover:bg-orange-50 rounded-sm" onClick={cardClicked}>
             <CardHeader>
                 <CardTitle>{mail.sender}</CardTitle>
                 <CardDescription>{mail.subject}</CardDescription>

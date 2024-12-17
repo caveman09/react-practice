@@ -4,7 +4,7 @@ export interface Email {
     recipient: string;
     subject: string;
     body: string;
-    data: Date;
+    date: Date;
     attachment: Attachment[];
 }
 
@@ -15,95 +15,95 @@ export interface Attachment {
     content: string; //base64 encoded content
 }
 
-export const dummyEmails: Email[] = [
+export const dummyEmails = [
     {
         id: '1',
         sender: 'alice@example.com',
         recipient: 'me@cavemail.com',
         subject: 'Meeting Reminder',
-        body: 'Don’t forget about our meeting tomorrow at 10am.',
-        data: new Date(),
-        attachment: [],
+        body: "Hey, don't forget about our meeting tomorrow at 10am in the conference room. We'll be discussing the new project milestones and assigning tasks. Please make sure to review the project plan before the meeting.",
+        date: new Date(2024, 0, 15, 9, 0, 0),
+        attachment: []
     },
     {
         id: '2',
         sender: 'bob@example.com',
         recipient: 'me@cavemail.com',
         subject: 'Weekly Report',
-        body: 'Here is the weekly report. Let me know if you have any questions.',
-        data: new Date(),
-        attachment: [],
+        body: 'Hi, here is the weekly report. It covers all the key metrics and performance indicators from the last week. Let me know if you have any questions or need further details.',
+        date: new Date(2024, 0, 14, 9, 0, 0),
+        attachment: []
     },
     {
         id: '3',
         sender: 'charlie@example.com',
         recipient: 'me@cavemail.com',
         subject: 'Lunch Invitation',
-        body: 'Would you like to grab lunch sometime this week?',
-        data: new Date(),
-        attachment: [],
+        body: "Hey, I was thinking if you'd like to grab lunch sometime this week. We can try out the new Italian restaurant downtown. Let me know your availability.",
+        date: new Date(2024, 0, 13, 9, 0, 0),
+        attachment: []
     },
     {
         id: '4',
         sender: 'dave@example.com',
         recipient: 'me@cavemail.com',
         subject: 'Project Update',
-        body: 'The project is on track. We should be able to meet the deadline.',
-        data: new Date(),
-        attachment: [],
+        body: 'Hello, just a quick update on the project. Everything is on track, and we are making good progress. We should be able to meet the deadline as planned. I\'ll keep you posted on any further developments.',
+        date: new Date(2024, 0, 12, 9, 0, 0),
+        attachment: []
     },
     {
         id: '5',
         sender: 'eve@example.com',
         recipient: 'me@cavemail.com',
         subject: 'Networking Event',
-        body: 'Don’t miss the networking event this Thursday.',
-        data: new Date(),
-        attachment: [],
+        body: "Hi, don't miss the networking event this Thursday. It's a great opportunity to meet industry professionals and expand your network. See you there!",
+        date: new Date(2024, 0, 11, 9, 0, 0),
+        attachment: []
     },
     {
         id: '6',
         sender: 'frank@example.com',
         recipient: 'me@cavemail.com',
         subject: 'Team Meeting Minutes',
-        body: 'Here are the minutes from today’s team meeting.',
-        data: new Date(),
-        attachment: [],
+        body: 'Hello, here are the minutes from today’s team meeting. We discussed various topics including project timelines, resource allocation, and upcoming deadlines. Please review and let me know if there are any discrepancies.',
+        date: new Date(2024, 0, 10, 9, 0, 0),
+        attachment: []
     },
     {
         id: '7',
         sender: 'grace@example.com',
         recipient: 'me@cavemail.com',
         subject: 'Client Feedback',
-        body: 'We received some feedback from the client. Please review it.',
-        data: new Date(),
-        attachment: [],
+        body: 'Hi, we received some feedback from the client regarding the recent deliverable. Please review the feedback and provide your insights. We need to address these points in our next meeting.',
+        date: new Date(2024, 0, 9, 9, 0, 0),
+        attachment: []
     },
     {
         id: '8',
         sender: 'hank@example.com',
         recipient: 'me@cavemail.com',
         subject: 'Budget Approval',
-        body: 'The budget for Q2 has been approved. Details attached.',
-        data: new Date(),
-        attachment: [],
+        body: 'Hello, the budget for Q2 has been approved. Please find the details attached. We can now proceed with the planned expenses and resource allocations.',
+        date: new Date(2024, 0, 8, 9, 0, 0),
+        attachment: []
     },
     {
         id: '9',
         sender: 'isabella@example.com',
         recipient: 'me@cavemail.com',
         subject: 'Workshop Invitation',
-        body: 'You are invited to a workshop on Project Management next week.',
-        data: new Date(),
-        attachment: [],
+        body: 'Hi, you are invited to a workshop on Project Management next week. The workshop will cover various aspects of project management, including planning, execution, and monitoring. It’s a great opportunity to enhance your skills.',
+        date: new Date(2024, 0, 7, 9, 0, 0),
+        attachment: []
     },
     {
         id: '10',
         sender: 'jack@example.com',
         recipient: 'me@cavemail.com',
         subject: 'Travel Itinerary',
-        body: 'Here is your travel itinerary for the upcoming business trip.',
-        data: new Date(),
-        attachment: [],
+        body: 'Hello, here is your travel itinerary for the upcoming business trip. The itinerary includes flight details, hotel reservations, and meeting schedules. Let me know if there are any changes or additional requests.',
+        date: new Date(2024, 0, 6, 9, 0, 0),
+        attachment: []
     }
 ];

@@ -1,11 +1,9 @@
-import { Separator } from "@/components/ui/separator";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarProvider } from "@/components/ui/sidebar";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
-import React, { useEffect, useRef, useState, createContext, useContext, ReactNode } from 'react';
+import React, { useEffect } from 'react';
 import MailViewSidebarComponent from "@/components/mail/mail-sidebar";
 import MailsViewComponent from "@/components/mail/mail-view";
 import MailsListComponent from "@/components/mail/mail-list";
-import { Email } from "@/types/emailTypes";
 
 const MailsComponent = () => {
 
