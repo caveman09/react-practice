@@ -49,7 +49,7 @@ const EmailCard = (mail: Email) => {
                     </Avatar>
                 }
 
-                <div className={`flex-grow ${cardHovered ? 'mr-0' : 'mr-10'} overflow-hidden text-clip`}>
+                <div className={`flex-grow ${cardHovered ? 'mr-0' : 'mr-10'} overflow-hidden`}>
                     <div className="flex flex-1 flex-grow justify-between">
                         <CardTitle className="text-start pt-3 pl-5">{mail.sender}</CardTitle>
                         {cardHovered === true &&
@@ -67,7 +67,7 @@ const EmailCard = (mail: Email) => {
                         </text>
                     </div>
                     <div className="ml-5 text-left text-ellipsis">
-                        <text className="overflow-hidden text-ellipsis text-xs text-left">
+                        <text className="overflow-hidden text-ellipsis text-xs text-left text-gray-600">
                             {mail.body}
                         </text>
                     </div>

@@ -100,7 +100,7 @@ const MailsComponent = () => {
                 <SidebarProvider style={{ "--sidebar-width": "12rem" }} className="max-h-full flex-1">
                     <MailViewSidebarComponent />
                     <ResizablePanelGroup direction="horizontal" className="flex-1 max-h-full h-full">
-                        <ResizablePanel className="max-h-full h-full">
+                        <ResizablePanel className="max-h-full h-full" defaultSize={40} minSize={35}>
                             <Routes>
                                 <Route path="/" element={<InboxMailsList />} />
                                 <Route path="/junkemail" element={<JunkMailsList />} />
@@ -110,7 +110,7 @@ const MailsComponent = () => {
                             </Routes>
                         </ResizablePanel>
                         <ResizableHandle withHandle className="h-full" />
-                        <ResizablePanel className="max-h-full h-full">
+                        <ResizablePanel className="max-h-full h-full" defaultSize={60} minSize={40}>
                             <MailsViewComponent />
                         </ResizablePanel>
                     </ResizablePanelGroup>
