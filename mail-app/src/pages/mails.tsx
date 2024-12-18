@@ -82,7 +82,7 @@ const MailsComponent = () => {
 
             const scroll = document.getElementById('mail-scroll');
             if (scroll) {
-                scroll.style.height = `${window.innerHeight - 90}px`;
+                scroll.style.height = `${window.innerHeight - 150}px`;
             }
         }
 
