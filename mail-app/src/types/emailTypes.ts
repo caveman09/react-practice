@@ -21,7 +21,7 @@ export const dummyEmails = [
         sender: 'alice@example.com',
         recipient: 'me@cavemail.com',
         subject: 'Meeting Reminder',
-        body: "Hey, don't forget about our meeting tomorrow at 10am in the conference room. We'll be discussing the new project milestones and assigning tasks. Please make sure to review the project plan before the meeting.",
+        body: "Hey, don't forget about our meeting tomorrow at 10am in the conference room. We'll be discussing the new project milestones and assigning tasks. Please make sure to review the project plan before the meeting. Also, if you have any questions about the agenda or the project details, feel free to reach out to me beforehand. I want to ensure that we are all on the same page and can have a productive discussion. Looking forward to seeing everyone there.",
         date: new Date(2024, 0, 15, 9, 0, 0),
         attachment: []
     },
@@ -30,7 +30,7 @@ export const dummyEmails = [
         sender: 'bob@example.com',
         recipient: 'me@cavemail.com',
         subject: 'Weekly Report',
-        body: 'Hi, here is the weekly report. It covers all the key metrics and performance indicators from the last week. Let me know if you have any questions or need further details.',
+        body: "Hi, here is the weekly report. It covers all the key metrics and performance indicators from the last week. Let me know if you have any questions or need further details. This week, we saw an increase in customer engagement, particularly in the new product line, which is a promising sign. Additionally, the marketing campaign appears to be driving significant traffic to our website. Please review the attached graphs and data sheets for a detailed breakdown. If there's anything specific you'd like to discuss, we can schedule a meeting to go over it in more detail.",
         date: new Date(2024, 0, 14, 9, 0, 0),
         attachment: []
     },
@@ -39,10 +39,11 @@ export const dummyEmails = [
         sender: 'charlie@example.com',
         recipient: 'me@cavemail.com',
         subject: 'Lunch Invitation',
-        body: "Hey, I was thinking if you'd like to grab lunch sometime this week. We can try out the new Italian restaurant downtown. Let me know your availability.",
+        body: "Hey, I was thinking if you'd like to grab lunch sometime this week. We can try out the new Italian restaurant downtown. Let me know your availability. I’ve heard great things about their lasagna and tiramisu, and I thought it would be a nice break from our usual routine. Plus, it would be a good opportunity to catch up and talk about some exciting ideas I have for our next project. Looking forward to your response. I hope you can make it!",
         date: new Date(2024, 0, 13, 9, 0, 0),
         attachment: []
-    },
+    }
+    ,
     {
         id: '4',
         sender: 'dave@example.com',

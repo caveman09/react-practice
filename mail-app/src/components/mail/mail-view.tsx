@@ -11,6 +11,8 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
+import { Button } from "../ui/button";
+import { Forward, Reply, ReplyAll, SunIcon } from "lucide-react";
 
 export default function MailsViewComponent() {
     const selectedEmail = useRecoilValue(selectedEmailState);
@@ -23,8 +25,8 @@ export default function MailsViewComponent() {
 
     function mailView() {
         return (
-            <Card className="h-[75%] flex m-1 rounded-sm">
-                <ScrollArea className="h-full rounded-md p-4 mx-auto">
+            <ScrollArea className="h-[80vh]">
+                <Card className="m-1 rounded-sm p-4">
                     <CardHeader className="p-0">
                         <div className="flex">
                             <Avatar className="bg-orange-100">
@@ -40,18 +42,29 @@ export default function MailsViewComponent() {
                     <CardContent className="mt-5 text-left ml-12 p-0">
                         {selectedEmail ? selectedEmail.body : 'null'}
                     </CardContent>
-                </ScrollArea>
-            </Card>
+
+                    <div className="flex pl-11 mt-8">
+                        <Button variant={'outline'} className="h-6 w-15 rounded-none"> <Reply className="" />Reply </Button>
+                        <Button variant={'outline'} className="h-6 w-15 mx-3 rounded-none"><Forward className="" />Forward </Button>
+                    </div>
+                </Card >
+            </ScrollArea >
         )
     }
 
     return (
         <div className="flex-1 flex-grow h-full">
             {selectedEmail &&
-                <Card className="flex m-1 rounded-sm">
-                    <CardHeader className="py-4">
-                        <CardTitle>
+                <Card className=" m-1 rounded-sm">
+                    <CardHeader className="py-3">
+                        <CardTitle className="flex w-full">
                             {selectedEmail.subject}
+                            <div className="ml-auto">
+                                <Button variant={'ghost'} className="h-6 w-4"> <SunIcon /> </Button>
+                                <Button variant={'ghost'} className="h-6 w-4"> <Reply /> </Button>
+                                <Button variant={'ghost'} className="h-6 w-4"> <ReplyAll /> </Button>
+                                <Button variant={'ghost'} className="h-6 w-4"> <Forward /> </Button>
+                            </div>
                         </CardTitle>
                     </CardHeader>
                 </Card>
