@@ -26,7 +26,6 @@ import custom_settings_image from '../assets/images/settings-icon.png'
 import custom_notifications_image from '../assets/images/notif-icon.png'
 
 export default function MailTitlebar() {
-
     return (
         <div className="fixed w-full z-50">
             <div className='sticky top-0 flex justify-between h-[50px]  bg-white m-0 p-0 z-50'>

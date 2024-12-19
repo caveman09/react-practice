@@ -1,13 +1,15 @@
-import { SidebarProvider } from "@/components/ui/sidebar";
+import { SidebarProvider, SidebarTrigger, useSidebar } from "@/components/ui/sidebar";
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@/components/ui/resizable";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import React, { ReactNode, useEffect } from 'react';
+import React, { ReactNode, useCallback, useEffect, useRef, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MailViewSidebarComponent from "@/components/mail/mail-sidebar";
 import MailsViewComponent from "@/components/mail/mail-view";
 import MailsListComponent from "@/components/mail/mail-list";
 import { dummyEmails } from "@/types/emailTypes";
 import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { useMailSidebarContext } from "@/components/mail/context/mail-sidebar-satate-provider";
 
 const MailListTopBarComponent: React.FunctionComponent<{ title: string, children: ReactNode | undefined }> = ({ title, children }) => {
     return (
@@ -66,6 +68,19 @@ const DeletedMailsList = () => {
 }
 
 const MailsComponent = () => {
+    let sidebarOpen = useRef<boolean | undefined>(true);
+    const [sidebar, setSidebar] = useState(true);
+    const { functionRef } = useMailSidebarContext();
+
+    const toggleSidebar = useCallback(() => {
+        sidebarOpen.current = !sidebarOpen.current;
+        setSidebar(sidebarOpen.current);
+        console.log(sidebarOpen);
+    }, [])
+
+    useEffect(() => {
+        functionRef.current = toggleSidebar;
+    }, [functionRef]);
 
     useEffect(() => {
 
@@ -97,7 +112,7 @@ const MailsComponent = () => {
     return (
         <Router>
             <div id="mails-parent" className="flex overflow-hidden">
-                <SidebarProvider style={{ "--sidebar-width": "12rem" }} className="max-h-full flex-1">
+                <SidebarProvider open={sidebar} style={{ "--sidebar-width": "12rem" }} className="max-h-full flex-1">
                     <MailViewSidebarComponent />
                     <ResizablePanelGroup direction="horizontal" className="flex-1 max-h-full h-full">
                         <ResizablePanel className="max-h-full h-full" defaultSize={40} minSize={35}>
@@ -115,9 +130,9 @@ const MailsComponent = () => {
                         </ResizablePanel>
                     </ResizablePanelGroup>
                 </SidebarProvider>
-            </div>
+            </div >
 
-        </Router>
+        </Router >
     )
 }
 
