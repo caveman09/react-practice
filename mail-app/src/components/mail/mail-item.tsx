@@ -2,10 +2,7 @@ import { Email } from "@/types/emailTypes";
 import React, { useState } from "react";
 import {
     Card,
-    CardContent,
     CardDescription,
-    CardFooter,
-    CardHeader,
     CardTitle,
 } from "@/components/ui/card"
 import { Checkbox } from "../ui/checkbox";

@@ -8,8 +8,7 @@ import MailsViewComponent from "@/components/mail/mail-view";
 import MailsListComponent from "@/components/mail/mail-list";
 import { dummyEmails } from "@/types/emailTypes";
 import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { useMailSidebarContext } from "@/components/mail/context/mail-sidebar-satate-provider";
+import { useInnerSidebarContext } from "@/components/mail/context/inner-sidebar-state-provider";
 
 const MailListTopBarComponent: React.FunctionComponent<{ title: string, children: ReactNode | undefined }> = ({ title, children }) => {
     return (
@@ -70,7 +69,7 @@ const DeletedMailsList = () => {
 const MailsComponent = () => {
     let sidebarOpen = useRef<boolean | undefined>(true);
     const [sidebar, setSidebar] = useState(true);
-    const { functionRef } = useMailSidebarContext();
+    const { functionRef } = useInnerSidebarContext();
 
     const toggleSidebar = useCallback(() => {
         sidebarOpen.current = !sidebarOpen.current;

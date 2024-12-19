@@ -1,10 +1,10 @@
 import { Button } from "./ui/button";
 import { Menubar, MenubarContent, MenubarItem, MenubarMenu, MenubarSeparator, MenubarShortcut, MenubarTrigger } from "./ui/menubar";
 import burger_menu_image from '../assets/images/burgermenu.png'
-import { useMailSidebarContext } from "./mail/context/mail-sidebar-satate-provider";
+import { useInnerSidebarContext } from "./mail/context/inner-sidebar-state-provider";
 
 export const MenubarComponent = () => {
-    const { functionRef } = useMailSidebarContext();
+    const { functionRef } = useInnerSidebarContext();
     return (
         <div className='sticky top-[50px]'>
             <Menubar className='p-0 overflow-hidden z-40'>
