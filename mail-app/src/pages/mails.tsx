@@ -72,7 +72,7 @@ const MailsComponent = () => {
         const updateDivHeight = () => {
             const div = document.getElementById('mails-parent');
             if (div) {
-                div.style.height = `${window.innerHeight - 90}px`;
+                div.style.height = `${window.innerHeight - 135}px`;
             }
 
             const maildiv = document.getElementById('mail-div');
@@ -82,7 +82,7 @@ const MailsComponent = () => {
 
             const scroll = document.getElementById('mail-scroll');
             if (scroll) {
-                scroll.style.height = `${window.innerHeight - 150}px`;
+                scroll.style.height = `${window.innerHeight - 190}px`;
             }
         }
 

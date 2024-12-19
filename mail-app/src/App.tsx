@@ -17,6 +17,7 @@ import { SidebarProvider, SidebarTrigger } from './components/ui/sidebar'
 
 import burger_menu_image from './assets/images/burgermenu.png'
 import MailsComponent from './pages/mails'
+import MailsActionBarComponent from './components/mail/mail-actionbar'
 
 function App() {
   return (
@@ -51,6 +52,7 @@ function App() {
               </div>
 
               <div className='mt-[50px] z-10'>
+                <MailsActionBarComponent />
                 <MailsComponent />
               </div>
             </div>

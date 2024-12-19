@@ -36,6 +36,10 @@ export default function MailsViewComponent() {
                             <div className="pl-2 py-2 font-sans ">
                                 {selectedEmail ? selectedEmail.sender : ''}
                             </div>
+
+                            <div className="ml-auto my-auto pr-5">
+                                <text className="text-xs text-gray-600">{selectedEmail ? selectedEmail.date.toUTCString() : ''}</text>
+                            </div>
                         </div>
                     </CardHeader>
 
