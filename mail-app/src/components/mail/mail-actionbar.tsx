@@ -2,11 +2,19 @@ import { Archive, Flag, LucideFolderPlus, Mail, MailCheckIcon, ReplyAll, ShieldA
 import { Button } from "../ui/button";
 import { Card } from "../ui/card";
 import { Separator } from "../ui/separator";
+import { useRecoilValue, useSetRecoilState } from "recoil";
+import { mailEditorOpen } from "./atoms/mail-atoms";
 
 const HomeBar = () => {
+    const setMailEditorOpen = useSetRecoilState(mailEditorOpen);
+
+    function ComposeClicked() {
+        setMailEditorOpen(true);
+    }
+
     return (
         <div className="flex">
-            <Button variant={'link'} className="rounded-none m-[1px] border-none bg-white hover:bg-orange-300">
+            <Button variant={'link'} className="rounded-none m-[1px] border-none bg-white hover:bg-orange-300" onClick={ComposeClicked}>
                 <Mail />
                 Compose
             </Button>

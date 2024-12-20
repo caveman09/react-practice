@@ -9,6 +9,8 @@ import MailsListComponent from "@/components/mail/mail-list";
 import { dummyEmails } from "@/types/emailTypes";
 import { Card } from "@/components/ui/card";
 import { useInnerSidebarContext } from "@/components/mail/context/inner-sidebar-state-provider";
+import MailEditorComponent from "@/components/mail/mail-editor";
+import MailsActionBarComponent from "@/components/mail/mail-actionbar";
 
 const MailListTopBarComponent: React.FunctionComponent<{ title: string, children: ReactNode | undefined }> = ({ title, children }) => {
     return (
@@ -110,6 +112,7 @@ const MailsComponent = () => {
 
     return (
         <Router>
+            <MailsActionBarComponent />
             <div id="mails-parent" className="flex overflow-hidden">
                 <SidebarProvider open={sidebar} style={{ "--sidebar-width": "12rem" }} className="max-h-full flex-1">
                     <MailViewSidebarComponent />
@@ -126,11 +129,11 @@ const MailsComponent = () => {
                         <ResizableHandle withHandle className="h-full" />
                         <ResizablePanel className="max-h-full h-full" defaultSize={60} minSize={40}>
                             <MailsViewComponent />
+                            <MailEditorComponent />
                         </ResizablePanel>
                     </ResizablePanelGroup>
                 </SidebarProvider>
             </div >
-
         </Router >
     )
 }

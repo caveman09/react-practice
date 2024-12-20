@@ -7,6 +7,7 @@ import MailsComponent from './pages/mails'
 import MailsActionBarComponent from './components/mail/mail-actionbar'
 import { InnerSidebarProvider, useInnerSidebarContext } from "@/components/mail/context/inner-sidebar-state-provider";
 import { MenubarComponent } from './components/menu-bar'
+import { Router } from 'react-router-dom'
 
 function App() {
 
@@ -23,7 +24,6 @@ function App() {
                 <MenubarComponent />
 
                 <div className='mt-[50px] z-10'>
-                  <MailsActionBarComponent />
                   <MailsComponent />
                 </div>
 
