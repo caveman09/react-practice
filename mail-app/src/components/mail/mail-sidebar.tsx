@@ -54,7 +54,7 @@ const folders = [
 
 export default function MailViewSidebarComponent() {
     return (
-        <Sidebar className='mt-[130px] ml-[3rem] max-h-[full] z-20'>
+        <Sidebar className='mt-[130px] ml-[3rem] max-h-[full] z-20' collapsible="icon">
             <SidebarContent>
                 <SidebarGroup>
                     <SidebarGroupLabel>Folders</SidebarGroupLabel>

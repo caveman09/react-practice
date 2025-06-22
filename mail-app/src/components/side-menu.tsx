@@ -47,23 +47,26 @@ const items = [
 
 export default function SideMenu() {
     return (
-        <Sidebar style={{ width: "3em" }} className="mt-[50px] max-h-[full] z-40">
+        <Sidebar className="mt-[50px] max-h-[full] z-40" collapsible="icon">
             <SidebarContent className="">
                 <SidebarGroup className="p-0">
-                    <SidebarGroupLabel className="w-11 h-11 m-[2.5px] p-0.5">
-                        <img src={cave_image} />
-                    </SidebarGroupLabel>
                     <SidebarGroupContent>
                         <SidebarMenu>
-                            {items.map((item) => (
-                                <SidebarMenuItem key={item.title} className="mx-auto">
-                                    <SidebarMenuButton asChild>
-                                        <a href={item.url} className="">
-                                            <item.icon />
-                                        </a>
-                                    </SidebarMenuButton>
-                                </SidebarMenuItem>
-                            ))}
+                            <div className="w-11 h-11 m-[2.5px] p-0.5">
+                                <img src={cave_image} />
+                            </div>
+                            <div className="items-start ml-[10px]">
+                                {items.map((item) => (
+                                    <SidebarMenuItem key={item.title} className="mx-auto">
+                                        <SidebarMenuButton asChild>
+                                            <a href={item.url} className="">
+                                                <item.icon />
+                                                {item.title}
+                                            </a>
+                                        </SidebarMenuButton>
+                                    </SidebarMenuItem>
+                                ))}
+                            </div>
                         </SidebarMenu>
                     </SidebarGroupContent>
                 </SidebarGroup>

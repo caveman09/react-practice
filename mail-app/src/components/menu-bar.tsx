@@ -12,7 +12,7 @@ export const MenubarComponent = () => {
                     <Button variant={'ghost'} className='' onClick={() => { functionRef.current() }}>
                         <img src={burger_menu_image} className='w-full h-full' />
                     </Button>
-                    <MenubarTrigger>File</MenubarTrigger>
+                    <MenubarTrigger>Home</MenubarTrigger>
                     <MenubarContent>
                         <MenubarItem>
                             New Tab <MenubarShortcut>⌘T</MenubarShortcut>
@@ -24,6 +24,9 @@ export const MenubarComponent = () => {
                         <MenubarItem>Print</MenubarItem>
                     </MenubarContent>
                     <MenubarSeparator></MenubarSeparator>
+                    <MenubarTrigger>View</MenubarTrigger>
+                    <MenubarSeparator></MenubarSeparator>
+                    <MenubarTrigger>Help</MenubarTrigger>
                 </MenubarMenu>
             </Menubar>
         </div>
