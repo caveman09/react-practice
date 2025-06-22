@@ -2,17 +2,16 @@ import { Link } from "react-router-dom";
 import {
     Sidebar,
     SidebarContent,
-    SidebarFooter,
     SidebarGroup,
     SidebarGroupContent,
     SidebarGroupLabel,
-    SidebarHeader,
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
-    SidebarProvider,
 } from "@/components/ui/sidebar"
 import { Archive, ArrowUpRightSquare, Icon, Inbox, LucideAlertOctagon, NotepadText, Pen, Trash, Trash2 } from "lucide-react";
+import { useRecoilValue } from "recoil";
+import { sidebarOpen } from "./atoms/mail-atoms";
 
 const folders = [
     {
@@ -53,8 +52,11 @@ const folders = [
 ]
 
 export default function MailViewSidebarComponent() {
+    const isSidebarOpen = useRecoilValue(sidebarOpen);
+
     return (
-        <Sidebar className='mt-[130px] ml-[3rem] max-h-[full] z-20' collapsible="icon">
+        <Sidebar className="mt-[130px] max-h-full z-20 transition-all duration-300 ease-in-out"
+            style={{ marginLeft: isSidebarOpen ? "7.5rem" : "3.0rem" }} collapsible="icon" >
             <SidebarContent>
                 <SidebarGroup>
                     <SidebarGroupLabel>Folders</SidebarGroupLabel>
@@ -62,7 +64,7 @@ export default function MailViewSidebarComponent() {
                         <SidebarMenu>
                             {folders.map((folder) => (
                                 <SidebarMenuItem key={folder.name} className="pl-2">
-                                    <SidebarMenuButton asChild>
+                                    <SidebarMenuButton asChild >
                                         <li className="">
                                             <Link to={folder.url} className="flex space-x-2 justify-start">
                                                 <folder.icon className="p-1" />
@@ -76,6 +78,6 @@ export default function MailViewSidebarComponent() {
                     </SidebarGroupContent>
                 </SidebarGroup>
             </SidebarContent>
-        </Sidebar>
+        </Sidebar >
     )
 }
