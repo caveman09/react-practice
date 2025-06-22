@@ -68,6 +68,10 @@ const DeletedMailsList = () => {
     )
 }
 
+const CustomSidebarStyle: React.CSSProperties & { [key: `--${string}`]: string } = {
+    "--sidebar-width": "12rem"
+}
+
 const MailsComponent = () => {
     let sidebarOpen = useRef<boolean | undefined>(true);
     const [sidebar, setSidebar] = useState(true);
@@ -114,7 +118,7 @@ const MailsComponent = () => {
         <Router>
             <MailsActionBarComponent />
             <div id="mails-parent" className="flex overflow-hidden">
-                <SidebarProvider open={sidebar} style={{ "--sidebar-width": "12rem" }} className="max-h-full flex-1">
+                <SidebarProvider open={sidebar} style={CustomSidebarStyle} className="max-h-full flex-1">
                     <MailViewSidebarComponent />
                     <ResizablePanelGroup direction="horizontal" className="flex-1 max-h-full h-full">
                         <ResizablePanel className="max-h-full h-full" defaultSize={40} minSize={35}>

@@ -4,10 +4,12 @@ import MailTitlebar from './components/mail-title-bar'
 import SideMenu from './components/side-menu'
 import { SidebarProvider, SidebarTrigger } from './components/ui/sidebar'
 import MailsComponent from './pages/mails'
-import MailsActionBarComponent from './components/mail/mail-actionbar'
 import { InnerSidebarProvider, useInnerSidebarContext } from "@/components/mail/context/inner-sidebar-state-provider";
 import { MenubarComponent } from './components/menu-bar'
-import { Router } from 'react-router-dom'
+
+const CustomSidebarStyle: React.CSSProperties & { [key: `--${string}`]: string } = {
+  "--sidebar-width": "0rem"
+}
 
 function App() {
 
@@ -16,8 +18,8 @@ function App() {
       <div className=''>
         <MailTitlebar />
         <div className='flex mt-[0px]'>
-          <SidebarProvider style={{ "--sidebar-width": "0rem" }} className='flex-1'>
-            <SideMenu style={{ width: "3rem" }} />
+          <SidebarProvider style={CustomSidebarStyle} className='flex-1'>
+            <SideMenu />
             <InnerSidebarProvider>
               <div className='flex-grow' style={{ marginLeft: "3rem" }}>
 
