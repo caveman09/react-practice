@@ -8,6 +8,7 @@ import {
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
+    useSidebar,
 } from "@/components/ui/sidebar"
 import { Archive, ArrowUpRightSquare, Icon, Inbox, LucideAlertOctagon, NotepadText, Pen, Trash, Trash2 } from "lucide-react";
 import { useRecoilValue } from "recoil";
@@ -53,6 +54,7 @@ const folders = [
 
 export default function MailViewSidebarComponent() {
     const isSidebarOpen = useRecoilValue(sidebarOpen);
+    const { open } = useSidebar();
 
     return (
         <Sidebar className="mt-[130px] max-h-full z-20 transition-all duration-300 ease-in-out"
@@ -63,12 +65,21 @@ export default function MailViewSidebarComponent() {
                     <SidebarGroupContent>
                         <SidebarMenu>
                             {folders.map((folder) => (
-                                <SidebarMenuItem key={folder.name} className="pl-2">
-                                    <SidebarMenuButton asChild >
-                                        <li className="">
-                                            <Link to={folder.url} className="flex space-x-2 justify-start">
-                                                <folder.icon className="p-1" />
-                                                <span>{folder.name}</span>
+                                <SidebarMenuItem key={folder.name}>
+                                    <SidebarMenuButton asChild>
+                                        <li>
+                                            <Link to={folder.url} className="flex space-x-2 w-full justify-between">
+                                                <div className="flex m-0 p-0">
+                                                    <folder.icon className="p-1"
+                                                        style={{ position: "relative", right: "4px" }} />
+                                                    {open && <span className="transition-all duration-300 ease-in-out whitespace-nowrap">{folder.name}</span>}
+                                                </div>
+                                                {
+                                                    open &&
+                                                    <div className="">
+                                                        123
+                                                    </div>
+                                                }
                                             </Link>
                                         </li>
                                     </SidebarMenuButton>

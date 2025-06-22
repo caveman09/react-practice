@@ -1,20 +1,17 @@
-import React from "react";
 import {
     Sidebar,
     SidebarContent,
-    SidebarFooter,
     SidebarGroup,
     SidebarGroupContent,
-    SidebarGroupLabel,
-    SidebarHeader,
     SidebarMenu,
     SidebarMenuButton,
     SidebarMenuItem,
-    SidebarProvider,
+    SidebarTrigger,
 } from "@/components/ui/sidebar"
-import { Divide } from "lucide-react";
 import { Calendar, Home, Inbox, Search, Settings } from "lucide-react"
 import cave_image from '../assets/images/cave.png'
+import { useRecoilState } from "recoil";
+import { sidebarOpen } from "./mail/atoms/mail-atoms";
 
 // Menu items.
 const items = [
@@ -46,6 +43,8 @@ const items = [
 ]
 
 export default function SideMenu() {
+    const [isSidebarOpen, setIsSidebarOpen] = useRecoilState(sidebarOpen);
+
     return (
         <Sidebar className="mt-[50px] max-h-[full] z-40" collapsible="icon">
             <SidebarContent className="">
@@ -53,8 +52,12 @@ export default function SideMenu() {
                     <SidebarGroupContent>
                         <SidebarMenu>
                             <div className="w-11 h-11 m-[2.5px] p-0.5">
-                                <img src={cave_image} />
+                                {/* Empty div to create space */}
                             </div>
+                            <SidebarTrigger className='fixed top-[50px] z-50 w-11 h-11 m-[2.5px] p-0.5 [&>svg]:hidden' onClick={() => { setIsSidebarOpen(!isSidebarOpen) }} >
+                                <img src={cave_image} />
+                            </SidebarTrigger>
+
                             <div className="items-start ml-[10px]">
                                 {items.map((item) => (
                                     <SidebarMenuItem key={item.title} className="mx-auto">
