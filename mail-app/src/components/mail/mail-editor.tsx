@@ -39,11 +39,13 @@ const MailEditorComponent = () => {
                 <AnimatePresence>
                     {isEditorOpen && !minimized && (
                         <motion.div
-                            key={"sheet"}
+                            key="sheet"
+                            layoutId="editor"
                             initial={{ opacity: 0, y: 50 }}
                             animate={{ opacity: 1, y: 0 }}
-                            exit={{ opacity: 0, y: 50 }}
-                            transition={{ duration: 0.3 }}
+                            exit={{ opacity: 0, y: 0 }} // keep opacity for morph
+                            transition={{ duration: 0.1 }}
+                            style={{ zIndex: 50 }}
                         >
                             <SheetContent side={'bottom'} overlayColor='bg-black/10' className={`w-[500px] h-[600px] ml-auto mr-[3%] mb-[1%] rounded-lg p-0 overflow-hidden`}>
                                 <div className="flex justify-between pt-2 bg-orange-200 pb-2">
@@ -87,11 +89,20 @@ const MailEditorComponent = () => {
                     {minimized &&
                         (
                             <motion.div
-                                key={"card"}
-                                initial={{ opacity: 0, y: 50 }}
+                                key="card"
+                                layoutId="editor"
+                                initial={{ opacity: 1, y: 0 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 exit={{ opacity: 0, y: 50 }}
                                 transition={{ duration: 0.3 }}
+                                style={{
+                                    position: "fixed",
+                                    right: "2rem",
+                                    bottom: "0rem",
+                                    width: 200,
+                                    height: 40,
+                                    zIndex: 50,
+                                }}
                             >
                                 < Card className="flex border-2 rounded-sm h-[40px] w-[200px] z-40 absolute right-2 transition-all duration-300 ease-in-out"
                                     style=
