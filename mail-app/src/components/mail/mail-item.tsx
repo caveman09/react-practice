@@ -48,9 +48,9 @@ const EmailCard = (mail: Email) => {
 
                 <div className={`flex-grow ${cardHovered ? 'mr-0' : 'mr-10'} overflow-hidden`}>
                     <div className="flex flex-1 flex-grow justify-between">
-                        <CardTitle className="text-start pt-3 pl-5">{mail.sender}</CardTitle>
+                        <CardTitle className="text-start pt-3 pl-5 pb-2">{mail.sender}</CardTitle>
                         {cardHovered === true &&
-                            <ToggleGroup type='multiple' className="gap-3">
+                            <ToggleGroup type='multiple' className="gap-3 pr-1">
                                 <ToggleGroupItem value="mail-open" className={`h-5 min-w-0 w-5 aspect-square data-[state=on]:bg-transparent hover:bg-transparent hover:text-orange-500`} onClick={() => handleToggle('mail-open')}> <MailOpen /> </ToggleGroupItem>
                                 <ToggleGroupItem value="flag" className={`h-5 min-w-0 w-5 data-[state=on]:bg-transparent hover:bg-transparent hover:text-orange-500`} onClick={() => handleToggle('flag')}> <Flag /> </ToggleGroupItem>
                                 <ToggleGroupItem value="pin" className={`h-5 min-w-0 w-4 data-[state=on]:bg-transparent hover:bg-transparent hover:text-orange-500`} onClick={() => handleToggle('pin')}> <PinIcon /> </ToggleGroupItem>
@@ -58,12 +58,12 @@ const EmailCard = (mail: Email) => {
                         }
                     </div>
                     <div className="flex justify-between">
-                        <CardDescription className="text-start pl-5">{mail.subject}</CardDescription>
+                        <CardDescription className="text-start pl-5 relative top-[-4px]">{mail.subject}</CardDescription>
                         <text className="text-xs font-thin text-gray-400 pr-1">
                             {mail.date.toDateString()}
                         </text>
                     </div>
-                    <div className="ml-5 text-left text-ellipsis">
+                    <div className="ml-5 text-left text-ellipsis relative top-[-8px]">
                         <text className="overflow-hidden text-ellipsis text-xs text-left text-gray-600">
                             {mail.body}
                         </text>
