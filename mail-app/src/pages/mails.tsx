@@ -9,7 +9,7 @@ import MailsListComponent from "@/components/mail/mail-list";
 import { dummyEmails, MailDraft } from "@/types/emailTypes";
 import { Card } from "@/components/ui/card";
 import { useInnerSidebarContext } from "@/components/mail/context/inner-sidebar-state-provider";
-import MailEditorComponent from "@/components/mail/mail-editor";
+import { MailEditorsOverlay } from "@/components/mail/mail-editor";
 import MailsActionBarComponent from "@/components/mail/mail-actionbar";
 import { mailDraftsState } from "@/components/mail/atoms/mail-atoms";
 import { useRecoilState } from "recoil";
@@ -159,9 +159,7 @@ const MailsComponent = () => {
                         <ResizableHandle withHandle className="h-full" />
                         <ResizablePanel className="max-h-full h-full" defaultSize={60} minSize={40}>
                             <MailsViewComponent />
-                            {mailDrafts.map((mailDraft) => {
-                                return (<MailEditorComponent />);
-                            })}
+                            <MailEditorsOverlay />
                         </ResizablePanel>
                     </ResizablePanelGroup>
                 </SidebarProvider>
