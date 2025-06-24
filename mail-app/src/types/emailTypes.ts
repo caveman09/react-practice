@@ -15,6 +15,13 @@ export interface Attachment {
     content: string; //base64 encoded content
 }
 
+export interface MailDraft {
+    id: number | null;
+    subject: string;
+    body: string;
+    to: string;
+}
+
 export const dummyEmails = [
     {
         id: '1',

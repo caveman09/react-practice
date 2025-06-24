@@ -6,11 +6,13 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import MailViewSidebarComponent from "@/components/mail/mail-sidebar";
 import MailsViewComponent from "@/components/mail/mail-view";
 import MailsListComponent from "@/components/mail/mail-list";
-import { dummyEmails } from "@/types/emailTypes";
+import { dummyEmails, MailDraft } from "@/types/emailTypes";
 import { Card } from "@/components/ui/card";
 import { useInnerSidebarContext } from "@/components/mail/context/inner-sidebar-state-provider";
 import MailEditorComponent from "@/components/mail/mail-editor";
 import MailsActionBarComponent from "@/components/mail/mail-actionbar";
+import { mailDraftsState } from "@/components/mail/atoms/mail-atoms";
+import { useRecoilState } from "recoil";
 
 const MailListTopBarComponent: React.FunctionComponent<{ title: string, children: ReactNode | undefined }> = ({ title, children }) => {
     return (
@@ -77,6 +79,8 @@ const MailsComponent = () => {
     const [sidebar, setSidebar] = useState(true);
     const { functionRef } = useInnerSidebarContext();
 
+    const [mailDrafts, setMailDrafts] = useRecoilState(mailDraftsState);
+
     const toggleSidebar = useCallback(() => {
         sidebarOpen.current = !sidebarOpen.current;
         setSidebar(sidebarOpen.current);
@@ -114,9 +118,31 @@ const MailsComponent = () => {
         };
     }, [])
 
+    const openMailEditor = useCallback(() => {
+        setMailDrafts((prevDrafts) => {
+            let newDraft: MailDraft;
+            if (prevDrafts.length > 0) {
+                newDraft = {
+                    id: prevDrafts.length,
+                    subject: "",
+                    body: "",
+                    to: ""
+                }
+            } else {
+                newDraft = {
+                    id: 0,
+                    subject: "",
+                    body: "",
+                    to: ""
+                }
+            }
+            return [...prevDrafts, newDraft];
+        });
+    }, []);
+
     return (
         <Router>
-            <MailsActionBarComponent />
+            <MailsActionBarComponent composeMailCallback={openMailEditor} />
             <div id="mails-parent" className="flex overflow-hidden">
                 <SidebarProvider open={sidebar} style={CustomSidebarStyle} className="max-h-full flex-1">
                     <MailViewSidebarComponent />
@@ -133,7 +159,9 @@ const MailsComponent = () => {
                         <ResizableHandle withHandle className="h-full" />
                         <ResizablePanel className="max-h-full h-full" defaultSize={60} minSize={40}>
                             <MailsViewComponent />
-                            <MailEditorComponent />
+                            {mailDrafts.map((mailDraft) => {
+                                return (<MailEditorComponent />);
+                            })}
                         </ResizablePanel>
                     </ResizablePanelGroup>
                 </SidebarProvider>

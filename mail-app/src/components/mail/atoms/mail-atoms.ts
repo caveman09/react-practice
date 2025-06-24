@@ -1,5 +1,5 @@
 import { atom } from 'recoil';
-import { Email } from '@/types/emailTypes';
+import { Email, MailDraft } from '@/types/emailTypes';
 
 export const sidebarOpen = atom<boolean>({
     key: 'sidebarOpen',
@@ -14,4 +14,9 @@ export const selectedEmailState = atom<Email | null>({
 export const mailEditorOpen = atom<boolean>({
     key: 'toggleMailEditor',
     default: false,
+});
+
+export const mailDraftsState = atom<MailDraft[]>({
+    key: 'mailDraftsState',
+    default: [],
 });

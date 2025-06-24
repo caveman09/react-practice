@@ -21,7 +21,7 @@ const MailEditorComponent = () => {
     const [mailTo, setMailTo] = useState<String | undefined>(undefined);
 
     /* visual effects states */
-    const [isEditorOpen, setIsEditorOpen] = useRecoilState(mailEditorOpen);
+    const [isEditorOpen, setIsEditorOpen] = useState(true)
     const [minimized, setMinimized] = useState(false);
 
     function closeEditor() {
@@ -35,7 +35,7 @@ const MailEditorComponent = () => {
 
     return (
         <>
-            <Sheet open={isEditorOpen}>
+            <Sheet open={isEditorOpen} modal={true}>
                 <AnimatePresence>
                     {isEditorOpen && !minimized && (
                         <motion.div
@@ -44,8 +44,8 @@ const MailEditorComponent = () => {
                             initial={{ opacity: 0, y: 50 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: 0 }} // keep opacity for morph
-                            transition={{ duration: 0.1 }}
-                            style={{ zIndex: 50 }}
+                            transition={{ duration: 0.2 }}
+                            style={{ zIndex: 50, width: 60 }}
                         >
                             <SheetContent side={'bottom'} overlayColor='bg-black/10' className={`w-[500px] h-[600px] ml-auto mr-[3%] mb-[1%] rounded-lg p-0 overflow-hidden`}>
                                 <div className="flex justify-between pt-2 bg-orange-200 pb-2">
@@ -99,8 +99,6 @@ const MailEditorComponent = () => {
                                     position: "fixed",
                                     right: "2rem",
                                     bottom: "0rem",
-                                    width: 200,
-                                    height: 40,
                                     zIndex: 50,
                                 }}
                             >
