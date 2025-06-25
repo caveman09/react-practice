@@ -11,9 +11,9 @@ import { useRecoilValue, useSetRecoilState } from "recoil";
 export const MailEditorComponent = memo(
     ({ editorId }: { editorId: number }) => {
         /* mail states */
-        const [mailSubject, setMailSubject] = useState<String | undefined>(undefined);
-        const [mailBody, setMailBody] = useState<String | undefined>(undefined);
-        const [mailTo, setMailTo] = useState<String | undefined>(undefined);
+        const [mailSubject, setMailSubject] = useState<string | undefined>(undefined);
+        const [mailBody, setMailBody] = useState<string | undefined>(undefined);
+        const [mailTo, setMailTo] = useState<string | undefined>(undefined);
 
         /* visual effects states */
         const [isEditorOpen, setIsEditorOpen] = useState(true)
@@ -37,7 +37,7 @@ export const MailEditorComponent = memo(
                     <Card className="w-[450px] h-[500px] ml-auto mr-[3%] mb-[1%] rounded-lg p-0 overflow-hidden">
                         <div className="flex justify-between bg-orange-200 py-1">
                             <CardHeader className="ml-3 my-auto py-0">
-                                <CardTitle className="text-base font-sans">New Message</CardTitle>
+                                <CardTitle className="text-base font-sans">{mailSubject ? mailSubject : "New Message"}</CardTitle>
                             </CardHeader>
 
                             <div className="flex mr-2 gap-1">
@@ -55,7 +55,7 @@ export const MailEditorComponent = memo(
                         </div>
                         <div>
                             <div className="flex">
-                                <Input type="email" placeholder="Email" className="mx-1 w-[80%] mt-1"
+                                <Input type="email" placeholder="Email" className="mx-1 w-[80%] mt-1" value={mailTo} onChange={(e) => setMailTo(e.target.value)}
                                     LeftIcon={<span className="text-stone-500">To</span>} variant={"underline"}
                                     RightIcon={<span className="text-stone-500">
                                         <Button variant={"link"} className="p-0 h-4 w-4" onClick={() => { }}>Cc</Button>
@@ -65,23 +65,23 @@ export const MailEditorComponent = memo(
                                 />
                             </div>
                             <div className="flex ml-[32px]">
-                                <Input type="text" placeholder="Subject" className="mx-1 w-[95%] mt-1" variant={"underline"} />
+                                <Input type="text" placeholder="Subject" className="mx-1 w-[95%] mt-1" variant={"underline"} value={mailSubject} onChange={(e) => setMailSubject(e.target.value)} />
                             </div>
                         </div>
                     </Card>
                 )}
                 {minimized &&
                     (
-                        < Card className="flex border-2 rounded-sm h-[40px] w-[200px] z-40 right-2 transition-all duration-300 ease-in-out mt-[460px]"
+                        <Card className="flex rounded-sm rounded-t-lg h-[40px] w-[200px] z-40 right-2 transition-all duration-300 ease-in-out mt-[465px] bg-orange-200 px-2"
                             style=
                             {{
                                 bottom: minimized ? '10px' : '10px'
                             }
                             }>
-                            <div onClick={() => { toggleMinimize() }} className=" flex-[65%] my-auto">
+                            <div onClick={() => { toggleMinimize() }} className=" flex-[65%] my-auto mx-3 text-base font-sans font-semibold cursor-pointer">
                                 Draft
                             </div>
-                            <Button variant={'ghost'} onClick={() => { toggleMinimize(); closeEditor(); }} className="flex-1 px-0 h-8 w-8 my-[2px] mr-[2px] z-50 rounded-sm opacity-70 hover:bg-white ring-offset-white transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-stone-950 focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-stone-100 dark:ring-offset-stone-950 dark:focus:ring-stone-300 dark:data-[state=open]:bg-stone-800">
+                            <Button variant={'ghost'} onClick={() => { toggleMinimize(); closeEditor(); }} className="mx-1 my-auto h-[25px] px-1 rounded-sm opacity-70 hover:bg-inherit ring-offset-white transition-opacity hover:opacity-100 focus:outline-none focus:ring-stone-950 focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-stone-100 dark:ring-offset-stone-950 dark:focus:ring-stone-300 dark:data-[state=open]:bg-stone-800">
                                 <X className="h-8 w-8" />
                             </Button>
                         </Card >
