@@ -13,6 +13,7 @@ import { MailEditorsOverlay } from "@/components/mail/mail-editor";
 import MailsActionBarComponent from "@/components/mail/mail-actionbar";
 import { mailDraftsState } from "@/components/mail/atoms/mail-atoms";
 import { useRecoilState } from "recoil";
+import { getNextMailDraftId } from "@/types/emailTypes";
 
 const MailListTopBarComponent: React.FunctionComponent<{ title: string, children: ReactNode | undefined }> = ({ title, children }) => {
     return (
@@ -121,20 +122,11 @@ const MailsComponent = () => {
     const openMailEditor = useCallback(() => {
         setMailDrafts((prevDrafts) => {
             let newDraft: MailDraft;
-            if (prevDrafts.length > 0) {
-                newDraft = {
-                    id: prevDrafts.length,
-                    subject: "",
-                    body: "",
-                    to: ""
-                }
-            } else {
-                newDraft = {
-                    id: 0,
-                    subject: "",
-                    body: "",
-                    to: ""
-                }
+            newDraft = {
+                id: getNextMailDraftId(),
+                subject: "",
+                body: "",
+                to: ""
             }
             return [...prevDrafts, newDraft];
         });

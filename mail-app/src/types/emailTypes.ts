@@ -15,6 +15,11 @@ export interface Attachment {
     content: string; //base64 encoded content
 }
 
+let mailDraftIdCoutner = -1;
+export function getNextMailDraftId(): number {
+    return mailDraftIdCoutner++;
+}
+
 export interface MailDraft {
     id: number | null;
     subject: string;
