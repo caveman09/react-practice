@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from "react";
+import { memo, useCallback, useEffect, useState } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion"
 import { Maximize2, MinusIcon, X } from "lucide-react";
@@ -7,9 +7,10 @@ import { Card, CardHeader, CardTitle } from "../ui/card";
 import { Input } from "../ui/input";
 import { mailDraftsState } from "./atoms/mail-atoms";
 import { useRecoilValue, useSetRecoilState } from "recoil";
+import { MailDraft } from "@/types/emailTypes";
 
 export const MailEditorComponent = memo(
-    ({ editorId }: { editorId: number }) => {
+    ({ editorId, setFocusedMailCallback, fullScreen }: { editorId: number, setFocusedMailCallback: (id: number | null) => void, fullScreen: boolean }) => {
         /* mail states */
         const [mailSubject, setMailSubject] = useState<string | undefined>(undefined);
         const [mailBody, setMailBody] = useState<string | undefined>(undefined);
@@ -32,9 +33,9 @@ export const MailEditorComponent = memo(
         }
 
         return (
-            <div className="bottom-0 z-50">
+            <div className="bottom-0 z-50 pointer-events-auto">
                 {!minimized && (
-                    <Card className="w-[450px] h-[500px] ml-auto mr-[3%] mb-[1%] rounded-lg p-0 overflow-hidden">
+                    <Card className={`w-[450px] h-[500px] ml-auto mr-[3%] mb-[1%] rounded-lg p-0 overflow-hidden` + (fullScreen ? "fixed left-0 top-0 w-full h-full z-50" : "")}>
                         <div className="flex justify-between bg-orange-200 py-1">
                             <CardHeader className="ml-3 my-auto py-0">
                                 <CardTitle className="text-base font-sans">{mailSubject ? mailSubject : "New Message"}</CardTitle>
@@ -44,7 +45,7 @@ export const MailEditorComponent = memo(
                                 <Button variant={'ghost'} onClick={toggleMinimize} className="mx-1 h-[25px] px-1 rounded-sm opacity-70 hover:bg-inherit ring-offset-white transition-opacity hover:opacity-100 focus:outline-none focus:ring-stone-950 focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-stone-100 dark:ring-offset-stone-950 dark:focus:ring-stone-300 dark:data-[state=open]:bg-stone-800">
                                     <MinusIcon className="h-4 w-4" />
                                 </Button>
-                                <Button variant={'ghost'} onClick={() => { }} className="mx-1 h-[25px] px-1 rounded-sm opacity-70 hover:bg-inherit ring-offset-white transition-opacity hover:opacity-100 focus:outline-none focus:ring-stone-950 focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-stone-100 dark:ring-offset-stone-950 dark:focus:ring-stone-300 dark:data-[state=open]:bg-stone-800">
+                                <Button variant={'ghost'} onClick={() => { setFocusedMailCallback(editorId) }} className="mx-1 h-[25px] px-1 rounded-sm opacity-70 hover:bg-inherit ring-offset-white transition-opacity hover:opacity-100 focus:outline-none focus:ring-stone-950 focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-stone-100 dark:ring-offset-stone-950 dark:focus:ring-stone-300 dark:data-[state=open]:bg-stone-800">
                                     <Maximize2 className="h-2 w-2" />
                                 </Button>
                                 <Button variant={"ghost"} onClick={closeEditor} className="mx-1 h-[25px] px-1 rounded-sm opacity-70 hover:bg-inherit ring-offset-white transition-opacity hover:opacity-100 focus:outline-none focus:ring-stone-950 focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-stone-100 dark:ring-offset-stone-950 dark:focus:ring-stone-300 dark:data-[state=open]:bg-stone-800">
@@ -69,7 +70,8 @@ export const MailEditorComponent = memo(
                             </div>
                         </div>
                     </Card>
-                )}
+                )
+                }
                 {minimized &&
                     (
                         <Card className="flex rounded-sm rounded-t-lg h-[40px] w-[200px] z-40 right-2 transition-all duration-300 ease-in-out mt-[465px] bg-orange-200 px-2"
@@ -94,17 +96,32 @@ export const MailEditorComponent = memo(
 
 export const MailEditorsOverlay = memo(() => {
     const mailDrafts = useRecoilValue(mailDraftsState);
+    const [focusedMailDraft, setFocusedMailDraft] = useState<MailDraft | null>(null);
 
     useEffect(() => {
         console.log("Mail drafts updated:", mailDrafts);
     }, [mailDrafts]);
 
+    const setFocusedMailCallback = (id: Number | null) => {
+        if (id === focusedMailDraft?.id) {
+            setFocusedMailDraft(null);
+        } else if (id !== focusedMailDraft?.id) {
+            console.log("Setting focused mail draft to ID:", id);
+            setFocusedMailDraft(mailDrafts.find((draft) => draft.id === id) || null);
+        }
+    }
+
     return (
         createPortal(
-            <div className="fixed bottom-0 left-[0px] z-50 flex gap-2 p-4 mx-[5%] w-[95%] flex-row-reverse">
-                {mailDrafts.map((draft, index) => (
-                    <MailEditorComponent key={index} editorId={draft.id !== null ? draft.id : -1} />
-                ))}
+            <div className="w-[100%] h-full fixed bottom-0 left-0 z-50 pointer-events-none">
+                <div className="fixed bottom-0 left-[0px] z-50 flex gap-2 p-4 w-[100%] h-[100%] flex-row-reverse pointer-events-none items-end">
+                    {mailDrafts.map((draft, index) => {
+                        if (draft.id !== null && focusedMailDraft?.id !== draft.id) {
+                            return <MailEditorComponent key={index} editorId={draft.id !== null ? draft.id : -1} setFocusedMailCallback={setFocusedMailCallback} fullScreen={false} />
+                        }
+                    })}
+                </div>
+                {focusedMailDraft && focusedMailDraft.id != null && <MailEditorComponent editorId={focusedMailDraft.id} setFocusedMailCallback={setFocusedMailCallback} fullScreen={true} />}
             </div>,
             document.body
         )

@@ -5,6 +5,7 @@ import { SidebarProvider } from './components/ui/sidebar'
 import MailsComponent from './pages/mails'
 import { InnerSidebarProvider } from "@/components/mail/context/inner-sidebar-state-provider";
 import { MenubarComponent } from './components/menu-bar'
+import { ReactNode, useEffect, useState } from 'react'
 
 const CustomSidebarStyle: React.CSSProperties & { [key: `--${string}`]: string } = {
   "--sidebar-width": "7.5rem",
